@@ -1,15 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import Sympo from "../Components/Sympo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 
 const Student = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [postImage, setPostImage] = useState({ myFile: "" });
   const [formData, setFormData] = useState({
@@ -49,7 +46,7 @@ const Student = () => {
 
   useEffect(() => {
     const fetchBatchDetails = async () => {
-      const res = await fetch(`http://localhost:3000/staff/getBatch`);
+      const res = await fetch(`${import.meta.env.VITE_API}/staff/getBatch`);
       const data = await res.json();
       const durations = data.map((item) => item.duration);
       setBatches([...batches, ...durations]);
@@ -88,7 +85,10 @@ const Student = () => {
     }
 
     try {
-      const result = await axios.post("http://localhost:3000/student", form);
+      const result = await axios.post(
+        `${import.meta.env.VITE_API}/student`,
+        form
+      );
       const data = result.data;
 
       if (result.status === 201) {

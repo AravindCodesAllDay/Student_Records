@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function AddSemester() {
@@ -14,7 +13,7 @@ function AddSemester() {
 
   useEffect(() => {
     const fetchBatchDetails = async () => {
-      const res = await fetch(`http://localhost:3000/staff/getBatch`);
+      const res = await fetch(`${import.meta.env.VITE_API}/staff/getBatch`);
       const data = await res.json();
       const durations = data.map((item) => item.duration);
       setBatches([...batches, ...durations]);
@@ -45,7 +44,7 @@ function AddSemester() {
     event.preventDefault();
     setLoading(true); // Start loading
     try {
-      const response = await fetch("http://localhost:3000/staff/addSem", {
+      const response = await fetch(`${import.meta.env.VITE_API}/staff/addSem`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

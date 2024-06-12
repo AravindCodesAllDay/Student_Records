@@ -4,12 +4,11 @@ import GridData from "../Components/GridData";
 function StudentDetails() {
   const [selectedBatch, setSelectedBatch] = useState("");
   const [batchDetails, setBatchDetails] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [batches, setBatches] = useState([]);
 
   useEffect(() => {
     const fetchBatchDetails = async () => {
-      const res = await fetch(`http://localhost:3000/staff/getBatch`);
+      const res = await fetch(`${import.meta.env.VITE_API}/staff/getBatch`);
       const data = await res.json();
       const durations = data.map((item) => item.duration);
       setBatches([...batches, ...durations]);
@@ -23,7 +22,7 @@ function StudentDetails() {
         try {
           const encodedBatch = encodeURIComponent(selectedBatch);
           const res = await fetch(
-            `http://localhost:3000/student/${encodedBatch}`
+            `${import.meta.env.VITE_API}/student/${encodedBatch}`
           );
           const batch = await res.json();
           setBatchDetails(batch);

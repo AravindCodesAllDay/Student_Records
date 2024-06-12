@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
 
 export default function GradeSheet() {
   const [regNo, setRegisterNo] = useState("");
@@ -15,10 +14,6 @@ export default function GradeSheet() {
   const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(false); // State to manage loading
 
-  const handleFileChange = (e) => {
-    setFiles({ ...files, [e.target.name]: e.target.files[0] });
-  };
-
   const handleInputChange = (e, subjectCode) => {
     const { value } = e.target;
     setGrades((prevGrades) => ({
@@ -29,7 +24,7 @@ export default function GradeSheet() {
 
   const fetchStudentDetails = async () => {
     const res = await fetch(
-      `http://localhost:3000/student/getStudent/${regNo}`
+      `${import.meta.env.VITE_API}/student/getStudent/${regNo}`
     );
     const data = await res.json();
     if (!res.ok) {
@@ -58,7 +53,7 @@ export default function GradeSheet() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/student/updateSemMarks/${regNo}`,
+        `${import.meta.env.VITE_API}/student/updateSemMarks/${regNo}`,
         {
           method: "POST",
           body: form,
@@ -116,7 +111,7 @@ export default function GradeSheet() {
   useEffect(() => {
     const fetchSemesterDetails = async () => {
       const res = await fetch(
-        `http://localhost:3000/staff/${studentDetails.batch}`
+        `${import.meta.env.VITE_API}/staff/${studentDetails.batch}`
       );
       const data = await res.json();
 

@@ -152,7 +152,7 @@ export default function GridData({ selectedBatch }) {
         const handleViewPdf = async (studentId, type) => {
           setLoadingPdf(true);
           const response = await axios.get(
-            `http://localhost:3000/student/pdf/${studentId}/${type}`,
+            `${import.meta.env.VITE_API}/student/pdf/${studentId}/${type}`,
             {
               responseType: "blob",
             }
@@ -384,7 +384,7 @@ export default function GridData({ selectedBatch }) {
       setLoading(true); // Set loading to true before fetching data
       try {
         const [studentsRes] = await Promise.all([
-          fetch(`http://localhost:3000/student/${selectedBatch}`),
+          fetch(`${import.meta.env.VITE_API}/student/${selectedBatch}`),
         ]);
 
         const [studentsData] = await Promise.all([studentsRes.json()]);

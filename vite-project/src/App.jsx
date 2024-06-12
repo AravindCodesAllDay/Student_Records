@@ -1,11 +1,6 @@
 import React from "react";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Components/Home";
-import Student from "./pages/Student";
-import Sympo from "./Components/Sympo";
-import StudentDetails from "./pages/StudentDetails";
-import AddSemester from "./pages/AddSemester";
-import GradeSheet from "./pages/GradeSheet";
 
 const App = () => {
   return (

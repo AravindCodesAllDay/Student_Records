@@ -11,7 +11,6 @@ export default function GradeSheet() {
   const [subjectDetails, setSubjectDetails] = useState([]);
   const [postImage, setPostImage] = useState({ myFile: "" });
   const [grades, setGrades] = useState({});
-  const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(false); // State to manage loading
 
   const handleInputChange = (e, subjectCode) => {
